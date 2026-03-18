@@ -1,0 +1,16 @@
+bom:
+    0x00000000:
+        mov edx, 0x50000000    ; 将内存寄存器 edx 指向显存
+        lea eax, [edx]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        lea eax, [edx+1]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        mov eax, "保"
+        lea eax, [edx+2]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        lea eax, [edx+3]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        mov eax, "护"
+        lea eax, [edx+4]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        lea eax, [edx+5]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        mov eax, "bo"
+        lea eax, [edx+6]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        lea eax, [edx+7]         ; 将 edx 寄存器指向的地址连接到 eax 寄存器
+        mov eax, "ot"
+        mov edx, 0x00000100    ; 将内存寄存器 edx 指向系统bootloader的地址

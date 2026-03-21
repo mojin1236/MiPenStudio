@@ -12,9 +12,9 @@ pygame.init()
 # 设置窗口大小和无边框模式
 screen = pygame.display.set_mode((400, 300), pygame.NOFRAME)
 
-screen.blit(pygame.image.load(r'.\mb.png'), (0, 0))
+screen.blit(pygame.image.load(r'.\datas\mb.png'), (0, 0))
 # 主循环
-for i in range(1000):
+for i in range(10000):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -52,7 +52,7 @@ def openFile():
 class XiaomiFirmwareEditor:
     def __init__(self, root):
         self.root = root
-        self.root.title("birelaod固件编辑器 Bata 0.1")
+        self.root.title("MipenStudio Bata 0.1")
         self.root.geometry("1200x800")
         
         # 模拟固件数据 (1MB)
@@ -86,7 +86,7 @@ class XiaomiFirmwareEditor:
         
         # 添加一些字符串
         strings = [
-            b"Firmware for PowerWriter series",
+            b"printf          static_cast",
             b"DO NOT MODIFY WITHOUT AUTHORIZATION",
             b"Secure Boot Enabled",
             b"Hardware ID: PW-2023-8872",

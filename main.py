@@ -14,7 +14,7 @@ screen = pygame.display.set_mode((400, 300), pygame.NOFRAME)
 
 screen.blit(pygame.image.load(r'.\datas\mb.png'), (0, 0))
 # 主循环
-for i in range(10000):
+for i in range(15000):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -52,7 +52,7 @@ def openFile():
 class XiaomiFirmwareEditor:
     def __init__(self, root):
         self.root = root
-        self.root.title("MipenStudio Bata 0.1")
+        self.root.title("MipenStudio v.2026R1.02a")
         self.root.geometry("1200x800")
         
         # 模拟固件数据 (1MB)
@@ -81,8 +81,7 @@ class XiaomiFirmwareEditor:
         self.a = random.choice(names)
         data[0:4] = self.a.encode('utf-8')
         
-        # 版本信息
-        data[16:32] = b'birelaod PowerWriter v2.3.1'
+        data[16:32] = b'RecoveryMode\'s boot v2.3.1'
         
         # 添加一些字符串
         strings = [
@@ -265,12 +264,10 @@ class XiaomiFirmwareEditor:
 型号: {self.a}
 序列号: PW-{random.randint(2020,2025)}-{random.randint(1000,8720)}
 固件版本: v0.0.1
-硬件版本: -无信息-
+硬件版本: {random.randint(2020,2025)}
 生产日期: 2025-06-15
 电池容量: {str(random.randint(9, 12)) + '0'}mAh
 连接协议: BLE 3.0
-支持功能:
-  -无信息-
 """
         
         device_info = scrolledtext.ScrolledText(
@@ -570,7 +567,7 @@ class XiaomiFirmwareEditor:
     
     def about(self):
         about_text = """
-MipenStudio v0.2b
+MipenStudio v.2026R1.02a
 
 用于编辑巨能写智能笔的固件文件。
 支持16进制查看和编辑，固件读取和写入功能。

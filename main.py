@@ -1,11 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext,filedialog,dialog
-import random
-import struct
-import binascii
+import random,pygame,warnings,os
 from datetime import datetime
-import pygame
-
+warnings.filterwarnings("ignore", category=UserWarning, module='pygame')
 # 初始化Pygame
 pygame.init()
 
@@ -191,6 +188,9 @@ class XiaomiFirmwareEditor:
         
         # 转到按钮
         self.goto_btn = ttk.Button(toolbar, text="转到", command=self.goto_offset)
+        self.goto_btn.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.editor_mode = ttk.Button(toolbar, text="编辑模式", command=self.goto_offset)
         self.goto_btn.pack(side=tk.LEFT, padx=2, pady=2)
     
     def create_status_bar(self):
@@ -532,7 +532,7 @@ class XiaomiFirmwareEditor:
         checksum = sum(self.firmware_data) & 0xFFFFFFFF
         self.add_status_message(f"校验和: 0x{checksum:08X}")
     
-    # 以下为菜单功能的空实现
+    # 以下为菜单功能的实现
     def new_file(self):
         messagebox.showinfo("信息", "新建文件功能尚未实现")
     

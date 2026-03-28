@@ -191,8 +191,13 @@ class XiaomiFirmwareEditor:
         self.goto_btn.pack(side=tk.LEFT, padx=2, pady=2)
 
         self.editor_mode = ttk.Button(toolbar, text="编辑模式", command=self.goto_offset)
-        self.goto_btn.pack(side=tk.LEFT, padx=2, pady=2)
-    
+        self.editor_mode.pack(side=tk.LEFT, padx=2, pady=2)
+
+        self.data_mode = ttk.Button(toolbar, text="数据模式", command=self.goto_offset)
+        self.data_mode.pack(side=tk.LEFT, padx=2, pady=2)
+
+        
+
     def create_status_bar(self):
         """创建状态栏"""
         self.status_bar = ttk.Frame(self.root)

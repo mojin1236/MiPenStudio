@@ -60,7 +60,7 @@ with open(path, "r",encoding='utf-8') as f:
         else:
             print(f"Compiling instruction: {i} -> {tbl[i]}")
             byte.write(tbl[i]+';')
-            mcr.write(bth[tbl[i]]+';')
+            mcr.write(bth[tbl[i]])
     byte.close()
     mcr.close()
     print("Compilation successful!")

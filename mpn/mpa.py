@@ -1,3 +1,6 @@
+class Invalid_instruction(Exception):
+    pass
+
 print("=====================================================================")
 print("============== MPA    The assembly compiler for MiPen ===============")
 print("=====================================================================")
@@ -7,58 +10,34 @@ print("=====================================================================\n\n
 path = input("Enter the path of the code file: ")
 
 tbl = {
-        "new":"0000",
-        "add":"0001",
-        "min":"0010",
+        "add":"0000",
+        "min":"0001",
+        "rit":"0010",
         "lft":"0011",
-        "rit":"0100",
+        "pull":"0100",
         "pop":"0101",
         "push":"0110",
-        "do":"0111",
-        "loop":"1000",
+        "ac":"0111",
+        "int":"1000",
         "prt":"1001",
         "inp":"1010",
-        "int":"1011",
-        "jmp":"1100",
-        "cmp":"1101",
-        "ifj":"1110",
-        "pull":"1111"
+        "jmp":"1011",
+        "cmp":"1100",
+        "do":"1101",
+        "loop":"1110",
+        "null":"1111"
     }
 
-with open(path, "r") as f:
-    code = f.readlines()
-    code = [line.strip() for line in code if not line.startswith(";")]
-    for line in code:
-        if line.startswith(";"):
-            code.pop(code.index(line))
-        if line.startswith("sadd"):
-            num = line.split()[1]
-            p = code.index(line)
-            code[p] = "add"
-            for i in range(int(num)-1):
-                code.insert(p+1, "add")
-        if line.startswith("smin"):
-            num = line.split()[1]
-            p = code.index(line)
-            code[p] = "min"
-            for i in range(int(num)-1):
-                code.insert(p+1, "min")
-        if line.startswith("slft"):
-            num = line.split()[1]
-            p = code.index(line)
-            code[p] = "lft"
-            for i in range(int(num)-1):
-                code.insert(p+1, "lft")
-        if line.startswith("srit"):
-            num = line.split()[1]
-            p = code.index(line)
-            code[p] = "rit"
-            for i in range(int(num)-1):
-                code.insert(p+1, "rit")
-    r = '\n'.join(code)
-    
-"""code = f.readlines()
-    ret = ''
-    for line in code:
-        line = line.strip()
-        ret += tbl[line]"""
+with open(path, "r",encoding='utf-8') as f:
+    code = [i.strip() for i in f.readlines()]
+    byte = open(path.split('/')[-1].replace('.mpa', '.mpb'), "w",encoding='utf-8')
+    for i in code:
+        if i.startswith(";"):
+            continue
+        elif i not in tbl.keys():
+            byte.close()
+            raise Invalid_instruction(f"Error: Invalid instruction '{i}'")
+        else:
+            byte.write(tbl[i]+';')
+    byte.close()
+

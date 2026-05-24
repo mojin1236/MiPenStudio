@@ -49,7 +49,7 @@ bth = {
 with open(path, "r",encoding='utf-8') as f:
     code = [i.strip() for i in f.readlines()]
     byte = open(path.split('/')[-1].replace('.mpa', '.mpb'), "w",encoding='utf-8')
-    mcr = open(path.split('/')[-1].replace('.mpa', '.mcr'), "w",encoding='utf-8')
+    mcr = open(path.split('/')[-1].replace('.mpa', '.mpr'), "w",encoding='utf-8')
     for i in code:
         if i.startswith(";"):
             continue
@@ -64,3 +64,13 @@ with open(path, "r",encoding='utf-8') as f:
     byte.close()
     mcr.close()
     print("Compilation successful!")
+
+print("Should it be compiled into mcr?(y/n)")
+
+if input().lower() == 'y':
+    with open(path.split('/')[-1].replace('.mpa', '.mpr'), "r",encoding='utf-8') as f:
+        mcr_code = f.read()
+        with open(path.split('/')[-1].replace('.mpa', '.mcr'), "w",encoding='utf-8') as f2:
+            f2.write('MCR')
+            f2.write(mcr_code)
+    print("MCR file created successfully!")

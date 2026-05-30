@@ -51,7 +51,7 @@ class XiaomiFirmwareEditor:
         self.root = root
         self.root.title("MipenStudio v.2026R1.02a")
         self.root.geometry("1200x800")
-        
+        self.mode = "editor"  # 当前模式：editor, data, disk
         # 模拟固件数据 (1MB)
         self.firmware_data = self.generate_firmware_data(1024 * 1024)  # 1MB
         self.original_data = self.firmware_data.copy()
